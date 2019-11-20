@@ -46,11 +46,25 @@
 
     Go to your repository settings and under secrets section add your [pulumi access token](https://app.pulumi.com/alaatm/settings/tokens), name it `PULUMI_ACCESS_TOKEN`.
 
+1. Set Azure credentials:
+
+    Go to your repository settings and under secrects section add your Azure secrets, name it `AZURE_CREDENTIALS`. The value should be something like this:
+    ```
+    {
+        "clientId": "<GUID>",
+        "clientSecret": "<GUID>",
+        "subscriptionId": "<GUID>",
+        "tenantId": "<GUID>",
+        (...)
+    }
+    ```
+
+    These can be created from the Azure portal under active directory/App registrations.
 
 ### Resources
 
 1. [Pulumi GitHub Actions 1](https://www.pulumi.com/docs/guides/continuous-delivery/github-actions/)
-1. [Pulumi Github Actions 2](https://www.pulumi.com/docs/guides/continuous-delivery/azure-devops/)
+1. [Azure CLI Actions](https://github.com/Azure/actions)
 1. [Azure DevOps](https://www.pulumi.com/docs/guides/continuous-delivery/azure-devops/)
 1. [Azure Setup](https://www.pulumi.com/docs/intro/cloud-providers/azure/setup/)
 1. [Build, test, and deploy .NET Core apps](https://docs.microsoft.com/en-us/azure/devops/pipelines/ecosystems/dotnet-core?view=azure-devops)
