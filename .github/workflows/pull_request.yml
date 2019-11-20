@@ -10,8 +10,7 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       
-      - run: |
-        az webapp list --query "[?state=='Running']"
+      - run: az webapp list --query "[?state=='Running']"
 
 #       - name: Setup Pulumi CLI
 #         run: curl https://get.pulumi.com | bash
