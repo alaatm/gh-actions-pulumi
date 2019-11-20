@@ -1,0 +1,6 @@
+config:
+  azure:location: West Europe
+  gh-actions:sqlPassword:
+    secure: AAABAFa2+n2jlc2gwx6EYEHXueI9A22xFVaPV8PIBJeDXi4ZbqF9BRM=
+  gh-actions:sqlUsername:
+    secure: AAABAHIEYmnClN4olkHmCBRB2rkJcaI/ul1gLmhxPPHYTX11
