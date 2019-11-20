@@ -48,7 +48,8 @@
 
 1. Set Azure credentials:
 
-    Go to your repository settings and under secrects section add your Azure secrets, name it `AZURE_CREDENTIALS`. The value should be something like this:
+    Execute `az ad sp create-for-rbac --name "<<name>>" --role contributor --scopes /subscriptions/509ae91c-1e41-451e-84fa-dd82d7696b67 --sdk-auth` to get Azure credentials then
+    go to your repository settings and under secrects section add your Azure secrets, name it `AZURE_CREDENTIALS`. The value should be something like this:
     ```
     {
         "clientId": "<GUID>",
