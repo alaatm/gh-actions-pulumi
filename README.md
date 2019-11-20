@@ -62,6 +62,15 @@
 
     These can be created from the Azure portal under active directory/App registrations.
 
+1. Add Azure credentials to your config by executing the following:
+
+    ```
+    $ pulumi config set azure:clientId <clientID>
+    $ pulumi config set azure:clientSecret <clientSecret> --secret
+    $ pulumi config set azure:tenantId <tenantID>
+    $ pulumi config set azure:subscriptionId <subscriptionId>    
+    ```
+
 ### Resources
 
 1. [Pulumi GitHub Actions 1](https://www.pulumi.com/docs/guides/continuous-delivery/github-actions/)

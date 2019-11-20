@@ -1,5 +1,10 @@
 config:
+  azure:clientId: 9382151a-1b32-4298-ad8c-d8334dd6df58
+  azure:clientSecret:
+    secure: AAABAE1WLBLzjyvm/iup8Bc5bhNe4eVtigHUy/xKze6/JIjQF5IrarfduBnx7MNV3+K1PGVh3zTVxzhBkFsV9uSR/zU=
   azure:location: West Europe
+  azure:subscriptionId: 509ae91c-1e41-451e-84fa-dd82d7696b67
+  azure:tenantId: 092bda7c-04a6-4ea9-8cfc-2ccc27eec6e0
   gh-actions:sqlPassword:
     secure: AAABAFa2+n2jlc2gwx6EYEHXueI9A22xFVaPV8PIBJeDXi4ZbqF9BRM=
   gh-actions:sqlUsername:
