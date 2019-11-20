@@ -7,7 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup Pulumi CLI
-        run: curl https://get.pulumi.com | bash
+        run: |
+          curl https://get.pulumi.com | bash
+          PATH=$PATH:$HOME/.pulumi/bin
       - name: Setup .net core
         uses: actions/setup-dotnet@v1
         with:
