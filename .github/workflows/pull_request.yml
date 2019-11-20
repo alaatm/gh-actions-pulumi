@@ -19,7 +19,9 @@ jobs:
         
       - name: Execute pulumi preview
         working-directory: ./infra
-        run: $HOME/.pulumi/bin/pulumi preview
+        run: |
+          $HOME/.pulumi/bin/pulumi stack select dev
+          $HOME/.pulumi/bin/pulumi preview
         env:
 #          PULUMI_ROOT: ./infra
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
