@@ -40,19 +40,11 @@
 
 1. Build your Azure infrastructure code. See the `/infra` folder for reference.
 
-### Azure DevOps
-
-1. Create a new Azure DevOps project:
-
-    a. Login to your [Azure DevOps account](https://dev.azure.com) and create a new project.
-
-    b. Link it to your GitHub repository, Azure will request you authorize access.
+### Github Actions
 
 1. Set Pulumi access token:
 
-    In the created pipeline add a new variable called `PULUMI_ACCESS_TOKEN` to set your [pulumi access token](https://app.pulumi.com/alaatm/settings/tokens).
-
-1. Add `azure-pipelines.yml`, see the one in the root of this repo for reference.
+    Go to your repository settings and under secrets section add your [pulumi access token](https://app.pulumi.com/alaatm/settings/tokens), name it `PULUMI_ACCESS_TOKEN`.
 
 
 ### Resources
