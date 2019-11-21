@@ -8,9 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set variable
-        run: |
-          export myVar="Hello"
-          echo myVar equals $myVar
+        run: echo "::set-env name=MY_VAR::elo"
 
       - name: Read variable
-        run: echo myVar equals $myVar
+        run: echo MY_VAR equals $MY_VAR
