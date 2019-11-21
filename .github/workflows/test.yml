@@ -11,6 +11,6 @@ jobs:
         run: echo "::set-env name=MY_VAR::elo"
 
       - name: Read variable
-        run: echo MY_VAR equals $xyz
-        env:
-          xyz: $(MY_VAR)
+        uses: actions/hello-world-javascript-action@master
+        with:
+          who-to-greet: $(MY_VAR)
