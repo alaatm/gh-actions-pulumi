@@ -44,19 +44,19 @@ jobs:
           dotnet restore
           dotnet build -c release
 
-      - name: Publish webApp
+      - name: Publish web app
         run: dotnet publish -c release -o publish/web src/App/App.csproj
 
-      - name: Publish funcApp
+      - name: Publish func app
         run: dotnet publish -c release -o publish/func src/Funcs/Funcs.csproj
         
-      - name: 'Deploy webApp'
+      - name: 'Deploy web app'
         uses: azure/webapps-deploy@v1
         with: 
           app-name: ${{ env.APP_NAME }}
           package: './publish/web' 
         
-      - name: 'Deploy funcApp'
+      - name: 'Deploy func app'
         uses: azure/functions-action@v1
         with: 
           app-name: ${{ env.FUNC_NAME }}
