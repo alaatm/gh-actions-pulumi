@@ -1,7 +1,7 @@
 name: Test SDK installs
 
 on:
-  - pull_request
+  - push
 
 jobs:
   deploy:
