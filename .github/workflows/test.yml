@@ -18,5 +18,12 @@ jobs:
         with:
           dotnet-version: 3.0.100
 
+      - name: move .net 2.2 to 3.0 folder
+        run: |
+          mv /opt/hostedtoolcache/dncs/2.2.402/x64/ /opt/hostedtoolcache/dncs/3.0.100/x64/
+
       - name: List dncs/3.0.100/x64/sdk
         run: ls /opt/hostedtoolcache/dncs/3.0.100/x64/sdk
+
+      - name: Run dotnet --info
+        run: dotnet --info
