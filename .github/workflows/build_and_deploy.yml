@@ -7,12 +7,19 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+        uses: actions/checkout@v1
+
       - name: Azure login
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Setup .net core
+      - name: Setup .net core 2.2
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 2.2.402
+
+      - name: Setup .net core 3.0
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 3.0.100
@@ -22,9 +29,6 @@ jobs:
 
       - name: Add Pulumi to path
         run: echo "::add-path::$HOME/.pulumi/bin/"
-
-      - name: Checkout repo
-        uses: actions/checkout@v1
         
       - name: Execute pulumi up
         working-directory: ./infra
