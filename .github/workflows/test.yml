@@ -8,9 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set variable
+        id: xyz
         run: echo "::set-env name=MY_VAR::elo"
 
       - name: Read variable
         uses: actions/hello-world-javascript-action@master
         with:
-          who-to-greet: $MY_VAR
+          who-to-greet: env.MY_VAR
