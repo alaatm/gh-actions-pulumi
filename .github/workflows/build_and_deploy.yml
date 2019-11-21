@@ -1,0 +1,58 @@
+name: Build and deploy
+
+on:
+  - pull_request
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Azure login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Setup .net core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.0.100
+
+      - name: Setup Pulumi CLI
+        run: curl https://get.pulumi.com | bash
+
+      - name: Checkout repo
+        uses: actions/checkout@v1
+        
+      - name: Execute pulumi up
+        working-directory: ./infra
+        run: |
+          $HOME/.pulumi/bin/pulumi stack select dev
+          $HOME/.pulumi/bin/pulumi up
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+
+      - name: Restore and build projects
+        run: |
+          dotnet restore
+          dotnet build -c release
+
+      - name: Publish webApp
+        run: dotnet publish -c release -o publish/web src/App/App.csproj
+
+      - name: Publish funcApp
+        run: dotnet publish -c release -o publish/func src/Funcs/Funcs.csproj
+        
+      - name: 'Deploy webApp'
+        uses: azure/webapps-deploy@v1
+        with: 
+          app-name: dotnetcorewebapp19
+          package: './publish/web' 
+        
+      - name: 'Deploy funcApp'
+        uses: azure/functions-action@v1
+        with: 
+          app-name: dotnetcorewebapp19
+          package: './publish/web' 
+
+      - name: logout
+        run: az logout

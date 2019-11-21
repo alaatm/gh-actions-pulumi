@@ -1,0 +1,14 @@
+name: Test output variables
+
+on:
+  - push
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set variable
+        run: export myVar="Hello"
+
+      - name: Read variable
+        run: echo myVar equals $myVar

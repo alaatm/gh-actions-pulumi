@@ -1,7 +1,6 @@
 name: Pulumi
 on:
-#  - pull_request
-  - push  
+  - pull_request
 jobs:
   preview:
     name: Preview
@@ -10,8 +9,6 @@ jobs:
       - uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-      
-      - run: az webapp list --query "[?state=='Running']"
 
       - name: Setup Pulumi CLI
         run: curl https://get.pulumi.com | bash
@@ -30,7 +27,7 @@ jobs:
           $HOME/.pulumi/bin/pulumi stack select dev
           $HOME/.pulumi/bin/pulumi preview
         env:
-#          PULUMI_ROOT: ./infra
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
-          PULUMI_CI: pr
-          COMMENT_ON_PR: 1
+
+      - name: logout
+        run: az logout
