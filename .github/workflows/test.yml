@@ -14,4 +14,4 @@ jobs:
       - name: Read variable
         uses: actions/hello-world-javascript-action@master
         with:
-          who-to-greet: env.MY_VAR
+          who-to-greet: ${{ env.MY_VAR }}
