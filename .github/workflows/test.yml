@@ -8,7 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set variable
-        run: echo "::add-path::$HOME/.pulumi/bin/"
+        run: echo "::set-env name=MY_VAR::elo"
 
       - name: Read variable
-        run: echo $PATH
+        run: echo MY_VAR equals $xyz
+        env:
+          xyz: $(MY_VAR)
