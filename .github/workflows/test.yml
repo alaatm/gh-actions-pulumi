@@ -8,15 +8,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: Setup .net core 3.0
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 3.0.100
-
       - name: Setup .net core 2.2
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 2.2.402
 
-      - name: Check installed SDKs
-        run: dotnet --info
+      - name: Setup .net core 3.0
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.0.100
+
+      - name: List .net installations
+        run: |
+          ls /opt/hostedtoolcache/dncs/
+          ls /opt/hostedtoolcache/dncs/3.0.100/
+          ls /opt/hostedtoolcache/dncs/3.0.100/x64
+          ls /opt/hostedtoolcache/dncs/2.2.402/
+          ls /opt/hostedtoolcache/dncs/2.2.402/x64
