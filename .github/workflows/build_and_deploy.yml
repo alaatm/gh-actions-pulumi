@@ -20,16 +20,24 @@ jobs:
       - name: Setup Pulumi CLI
         run: curl https://get.pulumi.com | bash
 
+      - name: Add Pulumi to path
+        run: echo "::add-path::$HOME/.pulumi/bin/"
+
       - name: Checkout repo
         uses: actions/checkout@v1
         
       - name: Execute pulumi up
         working-directory: ./infra
         run: |
-          $HOME/.pulumi/bin/pulumi stack select dev
-          $HOME/.pulumi/bin/pulumi up
+          pulumi stack select dev
+          pulumi up
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+
+      - name: Set pulumi output variables
+        run: |
+          echo "::set-env name=APP_NAME::$(pulumi stack output appName)"
+          echo "::set-env name=FUNC_NAME::$(pulumi stack output funcName)"
 
       - name: Restore and build projects
         run: |
@@ -45,13 +53,13 @@ jobs:
       - name: 'Deploy webApp'
         uses: azure/webapps-deploy@v1
         with: 
-          app-name: dotnetcorewebapp19
+          app-name: $(APP_NAME)
           package: './publish/web' 
         
       - name: 'Deploy funcApp'
         uses: azure/functions-action@v1
         with: 
-          app-name: dotnetcorewebapp19
+          app-name: $(FUNC_NAME)
           package: './publish/web' 
 
       - name: logout
