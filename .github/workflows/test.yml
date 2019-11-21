@@ -18,10 +18,17 @@ jobs:
         with:
           dotnet-version: 3.0.100
 
-      - name: List .net installations
-        run: |
-          ls /opt/hostedtoolcache/dncs/
-          ls /opt/hostedtoolcache/dncs/3.0.100/
-          ls /opt/hostedtoolcache/dncs/3.0.100/x64
-          ls /opt/hostedtoolcache/dncs/2.2.402/
-          ls /opt/hostedtoolcache/dncs/2.2.402/x64
+      - name: List dncs
+        run: ls /opt/hostedtoolcache/dncs/
+
+      - name: List dncs/3.0.100/
+        run: ls /opt/hostedtoolcache/dncs/3.0.100/
+
+      - name: List dncs/3.0.100/x64
+        run: ls /opt/hostedtoolcache/dncs/3.0.100/x64
+
+      - name: List dncs/2.2.402/
+        run: ls /opt/hostedtoolcache/dncs/2.2.402/
+
+      - name: List dncs/2.2.402/x64
+        run: ls /opt/hostedtoolcache/dncs/2.2.402/x64
