@@ -1,7 +1,7 @@
 name: Build and deploy
 
 on:
-  - pull_request
+  - push
 
 jobs:
   deploy:
@@ -53,13 +53,13 @@ jobs:
       - name: 'Deploy webApp'
         uses: azure/webapps-deploy@v1
         with: 
-          app-name: $(APP_NAME)
+          app-name: ${{ env.APP_NAME }}
           package: './publish/web' 
         
       - name: 'Deploy funcApp'
         uses: azure/functions-action@v1
         with: 
-          app-name: $(FUNC_NAME)
+          app-name: ${{ env.FUNC_NAME }}
           package: './publish/web' 
 
       - name: logout
