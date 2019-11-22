@@ -13,7 +13,7 @@ jobs:
     steps:
       - run: echo "abc"
 
-  two:
+  three:
     runs-on: ubuntu-16.04
     if: APP_NAME == 'xyz'
     steps:
