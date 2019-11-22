@@ -20,7 +20,7 @@ jobs:
 
       - name: move .net 2.2 to 3.0 folder
         run: |
-          rsync -a /opt/hostedtoolcache/dncs/2.2.402/x64/* /opt/hostedtoolcache/dncs/3.0.100/x64/
+          rsync -a ${DOTNET_ROOT/3.0.100/2.2.402}/* $DOTNET_ROOT/
 
       - name: List dncs/3.0.100/x64/sdk
         run: ls /opt/hostedtoolcache/dncs/3.0.100/x64/sdk
