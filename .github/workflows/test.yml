@@ -29,6 +29,10 @@ jobs:
         env:
           MATRIX_CONTEXT: ${{ toJson(matrix) }}
         run: echo "$MATRIX_CONTEXT"
+  two:
+    if: env.GITHUB_CONTEXT != ''
+    steps:
+      - run: echo "yes"
 
 # name: Build and deploy
 
