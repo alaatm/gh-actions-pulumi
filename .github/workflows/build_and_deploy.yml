@@ -1,7 +1,7 @@
 name: Build and deploy
 
 on:
-  - pull_request
+  - push
 
 jobs:
   deploy:
@@ -23,6 +23,10 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 3.0.100
+
+      - name: .net SxS
+        run: |
+          rsync -a ${DOTNET_ROOT/3.0.100/2.2.402}/* $DOTNET_ROOT/
 
       - name: Setup Pulumi CLI
         run: |
