@@ -1,31 +1,34 @@
-name: Pulumi
+name: Pulumi preview
+
 on:
   - pull_request
+
 jobs:
   preview:
     name: Preview
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v1
+
       - uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Setup Pulumi CLI
-        run: curl https://get.pulumi.com | bash
+        run: |
+          curl https://get.pulumi.com | bash
+          echo "::add-path::$HOME/.pulumi/bin/"
 
-      - name: Setup .net core
+      - name: Setup .net core 3.0
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 3.0.100
-
-      - name: Checkout repo
-        uses: actions/checkout@v1
         
       - name: Execute pulumi preview
         working-directory: ./infra
         run: |
-          $HOME/.pulumi/bin/pulumi stack select dev
-          $HOME/.pulumi/bin/pulumi preview
+          pulumi stack select dev
+          pulumi preview
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
 
