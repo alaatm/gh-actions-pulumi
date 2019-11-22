@@ -10,19 +10,19 @@ jobs:
   next:
     runs-on: ubuntu-16.04
     steps:
-      - run: echo jobs.one.env.APP_NAME
+      - run: echo ${{ toJson(env) }}
 
-  two:
-    runs-on: ubuntu-16.04
-    if: jobs.one.env.APP_NAME == 'abc'
-    steps:
-      - run: echo "abc"
+  # two:
+  #   runs-on: ubuntu-16.04
+  #   if: jobs.one.env.APP_NAME == 'abc'
+  #   steps:
+  #     - run: echo "abc"
 
-  three:
-    runs-on: ubuntu-16.04
-    if: jobs.one.env.APP_NAME == 'xyz'
-    steps:
-      - run: echo "xyz"
+  # three:
+  #   runs-on: ubuntu-16.04
+  #   if: jobs.one.env.APP_NAME == 'xyz'
+  #   steps:
+  #     - run: echo "xyz"
 
 # name: Build and deploy
 
