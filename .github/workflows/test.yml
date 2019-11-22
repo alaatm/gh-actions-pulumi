@@ -6,6 +6,7 @@ env:
 
 jobs:
   one:
+    id: one
     runs-on: ubuntu-16.04
     steps:
       - run: echo "::set-env name=APP_NAME::xyz"
@@ -13,11 +14,11 @@ jobs:
   next:
     runs-on: ubuntu-16.04
     steps:
-      - run: echo "${{ toJson(env) }}"
+      - run: echo "${{ one.env.APP_NAME }}"
 
   two:
     runs-on: ubuntu-16.04
-    if: APP_NAME == 'abc'
+    if: one.env.APP_NAME == 'abc'
     steps:
       - run: echo "abc"
 
