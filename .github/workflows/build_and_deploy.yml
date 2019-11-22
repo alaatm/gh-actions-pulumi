@@ -1,11 +1,12 @@
 name: Build and deploy
 
-push:
-  branches:
-    - master
-  paths:
-    - 'infra/**'
-    - 'src/**'
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'infra/**'
+      - 'src/**'
     
 jobs:
   deploy:
