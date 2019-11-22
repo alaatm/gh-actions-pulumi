@@ -9,13 +9,13 @@ jobs:
 
   two:
     runs-on: ubuntu-16.04
-    if: APP_NAME == 'abc'
+    if: $APP_NAME == 'abc'
     steps:
       - run: echo "abc"
 
   three:
     runs-on: ubuntu-16.04
-    if: APP_NAME == 'xyz'
+    if: $APP_NAME == 'xyz'
     steps:
       - run: echo "xyz"
 
