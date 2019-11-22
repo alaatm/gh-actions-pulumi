@@ -6,18 +6,22 @@ jobs:
     runs-on: ubuntu-16.04
     steps:
       - run: echo "::set-env name=APP_NAME::xyz"
-
-  two:
+  next:
     runs-on: ubuntu-16.04
-    if: $APP_NAME == 'abc'
     steps:
-      - run: echo "abc"
+      - run: echo ${{ env }}
 
-  three:
-    runs-on: ubuntu-16.04
-    if: $APP_NAME == 'xyz'
-    steps:
-      - run: echo "xyz"
+  # two:
+  #   runs-on: ubuntu-16.04
+  #   if: $APP_NAME == 'abc'
+  #   steps:
+  #     - run: echo "abc"
+
+  # three:
+  #   runs-on: ubuntu-16.04
+  #   if: $APP_NAME == 'xyz'
+  #   steps:
+  #     - run: echo "xyz"
 
 # name: Build and deploy
 
