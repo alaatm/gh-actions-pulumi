@@ -5,9 +5,7 @@ jobs:
   one:
     runs-on: ubuntu-16.04
     steps:
-      - run: echo "::set-env name=APP_NAME::xyz"
-        env:
-          XYZ: '123'
+      - run: ${{ env.APP_NAME }} = 'xyz'
   next:
     runs-on: ubuntu-16.04
     steps:
