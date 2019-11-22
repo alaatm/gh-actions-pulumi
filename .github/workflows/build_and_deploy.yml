@@ -64,7 +64,7 @@ jobs:
         uses: azure/functions-action@v1
         with: 
           app-name: ${{ env.FUNC_NAME }}
-          package: './publish/web' 
+          package: './publish/func' 
 
       - name: logout
         run: az logout
