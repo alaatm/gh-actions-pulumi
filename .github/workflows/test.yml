@@ -10,17 +10,17 @@ jobs:
   next:
     runs-on: ubuntu-16.04
     steps:
-      - run: echo one.env.APP_NAME
+      - run: echo jobs.one.env.APP_NAME
 
   two:
     runs-on: ubuntu-16.04
-    if: one.env.APP_NAME == 'abc'
+    if: jobs.one.env.APP_NAME == 'abc'
     steps:
       - run: echo "abc"
 
   three:
     runs-on: ubuntu-16.04
-    if: one.env.APP_NAME == 'xyz'
+    if: jobs.one.env.APP_NAME == 'xyz'
     steps:
       - run: echo "xyz"
 
