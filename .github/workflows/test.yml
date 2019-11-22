@@ -11,10 +11,11 @@ jobs:
     steps:
       - run: echo "::set-env name=APP_NAME::xyz"
       - run: echo ${{ env.APP_NAME }}
-  next:
-    runs-on: ubuntu-16.04
-    steps:
-      - run: echo "${{ one.env.APP_NAME }}"
+
+  # next:
+  #   runs-on: ubuntu-16.04
+  #   steps:
+  #     - run: echo "${{ one.env.APP_NAME }}"
 
   two:
     runs-on: ubuntu-16.04
