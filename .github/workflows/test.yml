@@ -30,6 +30,7 @@ jobs:
           MATRIX_CONTEXT: ${{ toJson(matrix) }}
         run: echo "$MATRIX_CONTEXT"
   two:
+    runs-on: ubuntu-16.04
     if: env.GITHUB_CONTEXT != ''
     steps:
       - run: echo "yes"
