@@ -9,7 +9,7 @@ jobs:
   next:
     runs-on: ubuntu-16.04
     steps:
-      - run: echo ${{ env }}
+      - run: echo ${{ env.APP_NAME }}
 
   # two:
   #   runs-on: ubuntu-16.04
