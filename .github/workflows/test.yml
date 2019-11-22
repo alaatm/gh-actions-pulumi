@@ -1,6 +1,9 @@
 name: Test
 on: push
 
+env:
+  APP_NAME: ''
+  
 jobs:
   one:
     runs-on: ubuntu-16.04
