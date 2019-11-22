@@ -6,6 +6,8 @@ jobs:
     runs-on: ubuntu-16.04
     steps:
       - run: echo "::set-env name=APP_NAME::xyz"
+        env:
+          XYZ: '123'
   next:
     runs-on: ubuntu-16.04
     steps:
