@@ -8,4 +8,14 @@ jobs:
       MY_VAR: 'foo'
     steps:
       - if: env.MY_VAR == 'foo'
-        run: echo "Yes"
+        run: echo "yes"
+      - if: env.MY_VAR != 'foo'
+        run: echo "no"
+  two:
+    runs-on: ubuntu-16.04
+    steps:
+      - run: echo "::set-env name=MY_OTHER_VAR::foo"
+      - if: env.MY_OTHER_VAR == 'foo'
+        run: echo "yes"
+      - if: env.MY_OTHER_VAR != 'foo'
+        run: echo "no"
