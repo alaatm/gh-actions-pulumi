@@ -4,7 +4,8 @@ on: push
 jobs:
   one:
     runs-on: ubuntu-16.04
+    env:
+      MY_VAR: 'foo'
     steps:
-      - run: echo "::set-env name=MY_VAR::Test"
-      - if: ${{ env.MY_VAR }} == 'Test'
+      - if: env.MY_VAR == 'foo'
         run: echo "Yes"
