@@ -78,6 +78,7 @@
 
 1. [Pulumi GitHub Actions 1](https://www.pulumi.com/docs/guides/continuous-delivery/github-actions/)
 1. [Azure CLI Actions](https://github.com/Azure/actions)
+1. [Azure Github Actions Samples](https://github.com/Azure/actions-workflow-samples)
 1. [Azure DevOps](https://www.pulumi.com/docs/guides/continuous-delivery/azure-devops/)
 1. [Azure Setup](https://www.pulumi.com/docs/intro/cloud-providers/azure/setup/)
 1. [Build, test, and deploy .NET Core apps](https://docs.microsoft.com/en-us/azure/devops/pipelines/ecosystems/dotnet-core?view=azure-devops)

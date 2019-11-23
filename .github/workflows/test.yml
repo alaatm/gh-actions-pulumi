@@ -1,33 +1,18 @@
 name: Test
 on: push
 
-env:
-  APP_NAME: 'abc'
-
 jobs:
   one:
-    id: one
     runs-on: ubuntu-16.04
     steps:
-      - run: echo "::set-env name=APP_NAME::xyz"
-      - run: echo ${{ env.APP_NAME }}
-
-  # next:
-  #   runs-on: ubuntu-16.04
-  #   steps:
-  #     - run: echo "${{ one.env.APP_NAME }}"
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.0.100
 
   two:
     runs-on: ubuntu-16.04
-    if: one.env.APP_NAME == 'abc'
     steps:
-      - run: echo "abc"
-
-  # three:
-  #   runs-on: ubuntu-16.04
-  #   if: jobs.one.env.APP_NAME == 'xyz'
-  #   steps:
-  #     - run: echo "xyz"
+      - run: dotnet --info
 
 # name: Build and deploy
 
@@ -62,7 +47,7 @@ jobs:
 
 #   infra:
 #     runs-on: ubuntu-latest
-#     needs: [az_login, sdk]
+#     needs: [az-login, sdk-setup]
 #     steps:
 #       - name: Setup Pulumi CLI
 #         run: |
