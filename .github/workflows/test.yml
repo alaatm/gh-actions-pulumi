@@ -5,9 +5,7 @@ jobs:
   one:
     runs-on: ubuntu-16.04
     steps:
-      - run: |
-        echo "::set-env name=FOO::foo"
-        echo "::set-env name=BAR::bar"
+      - run: echo "::set-env name=FOO::foo"
       - if: env.FOO == 'foo' || env.BAR == 'foo'
         run: exit 1
       - run: echo Should not get here
