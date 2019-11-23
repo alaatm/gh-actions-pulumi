@@ -4,18 +4,10 @@ on: push
 jobs:
   one:
     runs-on: ubuntu-16.04
-    env:
-      MY_VAR: 'foo'
     steps:
-      - if: env.MY_VAR == 'foo'
-        run: echo "yes"
-      - if: env.MY_VAR != 'foo'
-        run: echo "no"
-  two:
-    runs-on: ubuntu-16.04
-    steps:
-      - run: echo "::set-env name=MY_OTHER_VAR::foo"
-      - if: env.MY_OTHER_VAR == 'foo'
-        run: echo "yes"
-      - if: env.MY_OTHER_VAR != 'foo'
-        run: echo "no"
+      - run: |
+        echo "::set-env name=ENV_ONE::foo"
+        echo "::set-env name=ENV_TWO::bar"
+      - if: env.ENV_ONE == 'foo' || env.ENV_TWO == 'foo'
+        run: exit 1
+      - run: echo Should not get here
