@@ -6,8 +6,8 @@ jobs:
     runs-on: ubuntu-16.04
     steps:
       - run: |
-        echo "::set-env name=ENV_ONE::foo"
-        echo "::set-env name=ENV_TWO::bar"
-      - if: env.ENV_ONE == 'foo' || env.ENV_TWO == 'foo'
+        echo "::set-env name=FOO::foo"
+        echo "::set-env name=BAR::bar"
+      - if: env.FOO == 'foo' || env.BAR == 'foo'
         run: exit 1
       - run: echo Should not get here
