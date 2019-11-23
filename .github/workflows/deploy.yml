@@ -1,12 +1,11 @@
-name: Build and deploy
+name: Deploy
 
 on:
   push:
     branches:
       - master
-    paths:
-      - 'infra/**'
-      - 'src/**'
+    tags:
+      - deploy
     
 jobs:
   deploy:
@@ -74,5 +73,5 @@ jobs:
           app-name: ${{ env.FUNC_NAME }}
           package: './publish/func' 
 
-      - name: logout
+      - name: Azure logout
         run: az logout
