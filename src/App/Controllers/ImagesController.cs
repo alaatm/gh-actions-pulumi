@@ -66,14 +66,23 @@ namespace App.Controllers
         }
 
         private Task WriteFileAsync(string name)
+            => System.IO.File.WriteAllTextAsync(Path.Join(GetRootFolder(), Path.GetFileNameWithoutExtension(name) + ".txt"), DateTime.UtcNow.Ticks.ToString());
+
+        private string GetRootFolder()
         {
-            var root = Path.Join(_env.ContentRootPath, "..", "uploads");
+            var root = IsRunningInAzure()
+                ? Path.Join(_env.ContentRootPath, "..", "uploads")
+                : Path.Join(_env.ContentRootPath, "uploads");
+
             if (!Directory.Exists(root))
             {
                 Directory.CreateDirectory(root);
             }
 
-            return System.IO.File.WriteAllTextAsync(Path.Join(root, Path.GetFileNameWithoutExtension(name) + ".txt"), DateTime.UtcNow.Ticks.ToString());
+            return root;
         }
+
+        private bool IsRunningInAzure()
+            => !String.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("WEBSITE_SITE_NAME"));
     }
 }
