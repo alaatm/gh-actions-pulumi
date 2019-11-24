@@ -89,6 +89,7 @@ class Program
             {
                 { "APPINSIGHTS_INSTRUMENTATIONKEY", appInsights.InstrumentationKey },
                 { "ASPNETCORE_ENVIRONMENT", "Production" },
+                { "AzureWebJobsStorage", storage.PrimaryConnectionString },
                 { "Storage:ConnectionString", storage.PrimaryConnectionString },
                 { "Storage:Container", imagesContainer.Name },
             },
