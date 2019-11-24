@@ -60,7 +60,7 @@ jobs:
 
       - name: Publish funcs app
         run: |
-          dotnet publish --no-build -c Release -o publish/func src/Funcs/Funcs.csproj
+          dotnet publish --no-build -c Release -o publish/funcs src/Funcs/Funcs.csproj
           cd publish/funcs && zip -r ../funcs.zip .
         
       - name: 'Deploy web app'
