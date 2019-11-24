@@ -65,9 +65,7 @@ jobs:
           cd publish/funcs && zip -r ../funcs.zip .
 
       - name: 'Deploy web app'
-        run: |
-          az webapp deployment source config-zip -g $RG_NAME -n $APP_NAME --src ./publish/web.zip
-      # Below action does not deploy using run from package
+        run: az webapp deployment source config-zip -g $RG_NAME -n $APP_NAME --src ./publish/web.zip
       # - name: 'Deploy web app'
       #   uses: azure/webapps-deploy@v1
       #   with: 
@@ -75,10 +73,12 @@ jobs:
       #     package: './publish/web.zip' 
         
       - name: 'Deploy funcs app'
-        uses: azure/functions-action@v1
-        with: 
-          app-name: ${{ env.FUNCS_NAME }}
-          package: './publish/funcs.zip'
+        run: az functionapp deployment source config-zip -g $RG_NAME -n $FUNCS_NAME --src ./publish/funcs.zip
+      # - name: 'Deploy funcs app'
+      #   uses: azure/functions-action@v1
+      #   with: 
+      #     app-name: ${{ env.FUNCS_NAME }}
+      #     package: './publish/funcs.zip'
 
       - name: Azure logout
         run: az logout
