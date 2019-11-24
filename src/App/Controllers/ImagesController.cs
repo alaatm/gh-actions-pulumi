@@ -67,7 +67,7 @@ namespace App.Controllers
 
         private Task WriteFileAsync(string name)
         {
-            var root = Path.Join(_env.ContentRootPath, "uploads");
+            var root = Path.Join(_env.ContentRootPath, "..", "uploads");
             if (!Directory.Exists(root))
             {
                 Directory.CreateDirectory(root);
