@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Models;
 using System;
+using Microsoft.AspNetCore.Hosting;
 
 namespace App.Controllers
 {
@@ -20,12 +21,14 @@ namespace App.Controllers
         private readonly ImagesDbContext _db;
         private readonly IConfiguration _config;
         private readonly ILogger<ImagesController> _logger;
+        private readonly IWebHostEnvironment _env;
 
-        public ImagesController(ImagesDbContext context, IConfiguration config, ILogger<ImagesController> logger)
+        public ImagesController(ImagesDbContext context, IConfiguration config, ILogger<ImagesController> logger, IWebHostEnvironment env)
         {
             _db = context;
             _config = config;
             _logger = logger;
+            _env = env;
         }
 
         [HttpGet("{id}")]
@@ -48,6 +51,7 @@ namespace App.Controllers
         public async Task<ActionResult> Post(IFormCollection formCollection)
         {
             var file = formCollection.Files.Single();
+            await WriteFileAsync(file.Name);
             await UploadAsync(file.OpenReadStream(), file.Name);
             return StatusCode(StatusCodes.Status202Accepted);
         }
@@ -59,6 +63,17 @@ namespace App.Controllers
             var container = blobClient.GetContainerReference(_config["Storage:Container"]);
             var blockBlob = container.GetBlockBlobReference(name);
             await blockBlob.UploadFromStreamAsync(imageStream);
+        }
+
+        private Task WriteFileAsync(string name)
+        {
+            var root = Path.Join(_env.ContentRootPath, "uploads");
+            if (!Directory.Exists(root))
+            {
+                Directory.CreateDirectory(root);
+            }
+
+            return System.IO.File.WriteAllTextAsync(Path.Join(root, Path.GetFileNameWithoutExtension(name) + ".txt"), DateTime.UtcNow.Ticks.ToString());
         }
     }
 }
