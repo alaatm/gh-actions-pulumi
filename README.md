@@ -83,3 +83,5 @@
 1. [Azure Setup](https://www.pulumi.com/docs/intro/cloud-providers/azure/setup/)
 1. [Build, test, and deploy .NET Core apps](https://docs.microsoft.com/en-us/azure/devops/pipelines/ecosystems/dotnet-core?view=azure-devops)
 1. [Deploy an Azure Web App](https://docs.microsoft.com/en-us/azure/devops/pipelines/targets/webapp?view=azure-devops&tabs=yaml#endpoint)
+1. [Azure CLI Deployment (AppService)](https://docs.microsoft.com/en-us/azure/app-service/deploy-zip)
+1. [Azure CLI Deployment (Serverless)](https://docs.microsoft.com/en-us/cli/azure/functionapp/deployment/source?view=azure-cli-latest#az-functionapp-deployment-source-config-zip)
