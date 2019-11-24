@@ -71,7 +71,7 @@
     $ pulumi config set azure:subscriptionId <subscriptionId>    
     ```
 
-1. Add your workflow, see `.github/workflows/build_and_deploy.yml` for reference.
+1. Add your workflow, see `.github/workflows/deploy.yml` for reference.
 
 
 ### Resources
