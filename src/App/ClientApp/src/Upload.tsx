@@ -19,12 +19,14 @@ const Upload: React.FC<Props> = (props: Props) => {
 
             if (response.ok) {
                 alert('File uploaded.');
-                setTimeout(() => props.imageUploaded(), 2500);
+                setTimeout(() => props.imageUploaded(), 500);
             } else {
                 alert('Error uploading file.');
             }
         }
     };
+
+    const handleReload = () => props.imageUploaded();
 
     return (
         <div className="row justify-content-center upload">
@@ -33,6 +35,9 @@ const Upload: React.FC<Props> = (props: Props) => {
             </div>
             <div className="col-md-auto">
                 <button type="button" className="btn btn-primary" onClick={handleUpload}>Upload</button>
+            </div>
+            <div className="col-md-auto">
+                <button type="button" className="btn btn-primary" onClick={handleReload}>Reload</button>
             </div>
         </div>
     );
