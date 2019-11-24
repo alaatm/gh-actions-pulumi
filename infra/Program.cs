@@ -133,6 +133,7 @@ class Program
             AppSettings =
             {
                 { "APPINSIGHTS_INSTRUMENTATIONKEY", appInsights.InstrumentationKey },
+                { "WEBSITE_RUN_FROM_PACKAGE", "1" },    // Using manual az webapp deploy to take care of this https://github.com/Azure/app-service-announcements/issues/110
                 { "Container", imagesContainer.Name },
             },
             ConnectionStrings =
