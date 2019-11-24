@@ -89,7 +89,7 @@ class Program
             {
                 { "APPINSIGHTS_INSTRUMENTATIONKEY", appInsights.InstrumentationKey },
                 { "ASPNETCORE_ENVIRONMENT", "Production" },
-                { "AzureWebJobsStorage", storage.PrimaryConnectionString },
+                { "WEBSITE_RUN_FROM_PACKAGE", "1" },    // Using manual az webapp deploy to take care of this https://github.com/Azure/app-service-announcements/issues/110
                 { "Storage:ConnectionString", storage.PrimaryConnectionString },
                 { "Storage:Container", imagesContainer.Name },
             },
@@ -164,8 +164,9 @@ class Program
 
             return new Dictionary<string, object>
             {
+                { "rgName", rg.Name },
                 { "appName", app.Name },
-                { "funcName", funcs.Name },
+                { "funcsName", funcs.Name },
             };
         });
     }

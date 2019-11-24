@@ -40,12 +40,13 @@ jobs:
         run: |
           pulumi stack select dev
           pulumi up
+          echo "::set-env name=RG_NAME::$(pulumi stack output rgName)"
           echo "::set-env name=APP_NAME::$(pulumi stack output appName)"
-          echo "::set-env name=FUNC_NAME::$(pulumi stack output funcName)"
+          echo "::set-env name=FUNCS_NAME::$(pulumi stack output funcsName)"
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
 
-      - if: env.APP_NAME == '' || env.FUNC_NAME == ''
+      - if: env.RG_NAME == '' || env.APP_NAME == '' || env.FUNCS_NAME == ''
         run: exit 1
 
       - name: Restore and build projects
@@ -62,18 +63,21 @@ jobs:
         run: |
           dotnet publish --no-build -c Release -o publish/funcs src/Funcs/Funcs.csproj
           cd publish/funcs && zip -r ../funcs.zip .
-        
+
       - name: 'Deploy web app'
-        # uses: azure/webapps-deploy@v1
-        uses: azure/functions-action@v1
-        with: 
-          app-name: ${{ env.APP_NAME }}
-          package: './publish/web.zip' 
+        run: |
+          az webapp deployment source config-zip -g $RG_NAME -n $APP_NAME --src ./publish/web.zip
+      # Below action does not deploy using run from package
+      # - name: 'Deploy web app'
+      #   uses: azure/webapps-deploy@v1
+      #   with: 
+      #     app-name: ${{ env.APP_NAME }}
+      #     package: './publish/web.zip' 
         
       - name: 'Deploy funcs app'
         uses: azure/functions-action@v1
         with: 
-          app-name: ${{ env.FUNC_NAME }}
+          app-name: ${{ env.FUNCS_NAME }}
           package: './publish/funcs.zip'
 
       - name: Azure logout
