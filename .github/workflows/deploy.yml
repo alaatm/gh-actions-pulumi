@@ -51,25 +51,29 @@ jobs:
       - name: Restore and build projects
         run: |
           dotnet restore
-          dotnet build -c release
+          dotnet build --no-restore -c release
 
       - name: Publish web app
-        run: dotnet publish -c release -o publish/web src/App/App.csproj
+        run: |
+          dotnet publish --no-build -c release -o publish/web src/App/App.csproj
+          cd publish/web && zip -r ../web.zip .
 
-      - name: Publish func app
-        run: dotnet publish -c release -o publish/func src/Funcs/Funcs.csproj
+      - name: Publish funcs app
+        run: |
+          dotnet publish --no-build -c release -o publish/func src/Funcs/Funcs.csproj
+          cd publish/funcs && zip -r ../funcs.zip .
         
       - name: 'Deploy web app'
         uses: azure/webapps-deploy@v1
         with: 
           app-name: ${{ env.APP_NAME }}
-          package: './publish/web' 
+          package: './publish/web.zip' 
         
-      - name: 'Deploy func app'
+      - name: 'Deploy funcs app'
         uses: azure/functions-action@v1
         with: 
           app-name: ${{ env.FUNC_NAME }}
-          package: './publish/func' 
+          package: './publish/funcs.zip'
 
       - name: Azure logout
         run: az logout
