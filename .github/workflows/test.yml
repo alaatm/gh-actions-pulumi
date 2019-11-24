@@ -8,8 +8,10 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - run: |
+      - name: xyz
+        run: |
         cd src/App
         ls
+        
       - run: ls
 
