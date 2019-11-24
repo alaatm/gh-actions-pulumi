@@ -19,7 +19,7 @@ const Upload: React.FC<Props> = (props: Props) => {
 
             if (response.ok) {
                 alert('File uploaded.');
-                setTimeout(() => props.imageUploaded(), 500);
+                setTimeout(() => props.imageUploaded(), 2500);
             } else {
                 alert('Error uploading file.');
             }
