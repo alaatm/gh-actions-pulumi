@@ -51,16 +51,16 @@ jobs:
       - name: Restore and build projects
         run: |
           dotnet restore
-          dotnet build --no-restore -c release
+          dotnet build --no-restore -c Release
 
       - name: Publish web app
         run: |
-          dotnet publish --no-build -c release -o publish/web src/App/App.csproj
+          dotnet publish --no-build -c Release -o publish/web src/App/App.csproj
           cd publish/web && zip -r ../web.zip .
 
       - name: Publish funcs app
         run: |
-          dotnet publish --no-build -c release -o publish/func src/Funcs/Funcs.csproj
+          dotnet publish --no-build -c Release -o publish/func src/Funcs/Funcs.csproj
           cd publish/funcs && zip -r ../funcs.zip .
         
       - name: 'Deploy web app'
