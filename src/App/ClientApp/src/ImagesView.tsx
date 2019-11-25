@@ -19,7 +19,7 @@ const ImagesView: React.FC<Props> = (props: Props) => {
         return <div>Loading...</div>;
     } else if (data.length) {
         return (
-            <div className="card-group">{data.map(img => (
+            <div className="card-columns">{data.map(img => (
                 <div key={img.id} className="card">
                     <img src={`data:image/png;base64, ${img.data}`} className="card-img-top" alt="..." />
                     <div className="card-body">
