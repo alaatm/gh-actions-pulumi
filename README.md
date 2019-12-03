@@ -38,6 +38,20 @@
     ...
     ```
 
+1. Login to your azure account:
+
+    ```
+    az login
+    ```
+
+1. Retreive your azure subscription id where you want the resources be created in:
+
+    ```
+    az account list
+    ```
+
+    Take note of the `id` value for the subscription you want to use.
+    
 1. Build your Azure infrastructure code. See the `/infra` folder for reference.
 
 ### Github Actions
@@ -48,8 +62,9 @@
 
 1. Set Azure credentials:
 
-    Execute `az ad sp create-for-rbac --name "<name>" --role contributor --scopes /subscriptions/509ae91c-1e41-451e-84fa-dd82d7696b67 --sdk-auth` to get Azure credentials then
-    go to your repository settings and under secrects section add your Azure secrets, name it `AZURE_CREDENTIALS`. The value should be something like this:
+    Execute `az ad sp create-for-rbac --name "<name>" --role contributor --scopes /subscriptions/<guid> --sdk-auth` to get Azure credentials. Replace `<guid>` with your azure subscription id retrieved earlier.
+
+    Go to your repository settings and under secrects section add your Azure secrets, name it `AZURE_CREDENTIALS`. The value should be something like this:
     ```
     {
         "clientId": "<GUID>",
@@ -60,7 +75,7 @@
     }
     ```
 
-    These can be created from the Azure portal under active directory/App registrations.
+    These can also be created from the Azure portal under active directory/App registrations.
 
 1. Add Azure credentials to your config by executing the following:
 
