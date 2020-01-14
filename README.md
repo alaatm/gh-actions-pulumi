@@ -1,4 +1,4 @@
-# Azure Pipelines with Pulumi
+# GitHub Actions with Pulumi
 
 ### Steps
 
